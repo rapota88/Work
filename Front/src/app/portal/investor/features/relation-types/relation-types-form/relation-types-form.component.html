@@ -1,0 +1,37 @@
+<form
+  #relationTypeForm="ngForm"
+  modal-body
+  novalidate>
+  <div class="dd-labeled-input-bold">
+    <label class="required" for="relationTypeId">Relation type Name</label>
+    <input
+      pattern="^[^-\s][a-zA-Z0-9_\s-]+$"
+      required
+      #relationTypeId="ngModel"
+      name="relationTypeId"
+      id="relationTypeId"
+      [(ngModel)]="relationTypeData.name"
+      type="text"
+      maxlength="512"
+      placeholder="Enter Relation Type Name"
+      [ngClass]="{'red-border': relationTypeId.invalid && (relationTypeId.dirty || relationTypeId.touched)}">
+    <span
+      *ngIf="relationTypeId.invalid && (relationTypeId.dirty || relationTypeId.touched)"
+      class="error-text">
+          Relation Type Name is required
+        </span>
+  </div>
+</form>
+<div modal-footer>
+  <div class="action_container">
+    <div class="actions">
+      <button
+        class="dd-rounded-color-btn"
+        type="button"
+        [disabled]="relationTypeForm.invalid || relationTypeForm.pristine"
+        (click)="validate(relationTypeForm)">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
